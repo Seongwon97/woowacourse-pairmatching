@@ -13,10 +13,6 @@ public class Crews {
         this.value = value;
     }
 
-    public List<Crew> getValue() {
-        return List.copyOf(value);
-    }
-
     public List<Crew> getCrewsByCourse(Course course) {
         return value.stream()
                 .filter(crew -> crew.isSameCourse(course))
