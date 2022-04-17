@@ -2,6 +2,7 @@ package pairmatching.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pairmatching.domain.mission.Course;
 import pairmatching.domain.mission.Mission;
 import pairmatching.domain.crew.Crew;
 import pairmatching.domain.pair.Pair;
@@ -23,9 +24,9 @@ class PairServiceTest {
         List<Crew> crews = List.of(Rex, Buzz, Woody, Pocky);
 
         service.createNewPairs(mission, crews);
-        List<Pair> savedPairs = service.inquirePairsByMission(mission);
+        List<Pair> savedPairs = service.inquirePairs(mission, Course.BACKEND);
 
-        assertThat(savedPairs.get(savedPairs.size()-1).getValue().size())
+        assertThat(savedPairs.get(savedPairs.size()-1).getCrews().size())
                 .isEqualTo(2);
     }
 
@@ -36,9 +37,9 @@ class PairServiceTest {
         List<Crew> crews = List.of(Rex, Buzz, Woody, Pocky, Ham);
 
         service.createNewPairs(mission, crews);
-        List<Pair> savedPairs = service.inquirePairsByMission(mission);
+        List<Pair> savedPairs = service.inquirePairs(mission, Course.BACKEND);
 
-        assertThat(savedPairs.get(savedPairs.size()-1).getValue().size())
+        assertThat(savedPairs.get(savedPairs.size()-1).getCrews().size())
                 .isEqualTo(3);
     }
 

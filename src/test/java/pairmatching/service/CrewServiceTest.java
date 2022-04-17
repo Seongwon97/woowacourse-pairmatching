@@ -2,6 +2,7 @@ package pairmatching.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pairmatching.domain.mission.Course;
 
 import java.util.List;
 
@@ -15,6 +16,6 @@ class CrewServiceTest {
     void getShuffledCrewInfo() {
         CrewService service = new CrewService(List.of(Rex, Ham, Buzz));
 
-        assertThat(service.getShuffledCrew().size()).isEqualTo(3);
+        assertThat(service.getShuffledCrew(Course.BACKEND).size()).isEqualTo(3);
     }
 }

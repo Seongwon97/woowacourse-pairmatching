@@ -14,6 +14,14 @@ public class Crew {
         this.name = name;
     }
 
+    public boolean isSameCourse(Course course) {
+        return this.course == course;
+    }
+
+    public String getName() {
+        return name;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

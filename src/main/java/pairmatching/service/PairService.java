@@ -1,5 +1,6 @@
 package pairmatching.service;
 
+import pairmatching.domain.mission.Course;
 import pairmatching.domain.mission.Mission;
 import pairmatching.domain.crew.Crew;
 import pairmatching.domain.pair.Pair;
@@ -38,7 +39,7 @@ public class PairService {
         return pairs;
     }
 
-    public List<Pair> inquirePairsByMission(Mission mission) {
-        return pairs.inquirePairsByMission(mission);
+    public List<Pair> inquirePairs(Mission mission, Course course) {
+        return pairs.inquirePairs(mission, course);
     }
 }

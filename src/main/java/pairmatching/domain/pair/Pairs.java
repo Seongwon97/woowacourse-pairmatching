@@ -1,5 +1,6 @@
 package pairmatching.domain.pair;
 
+import pairmatching.domain.mission.Course;
 import pairmatching.domain.mission.Mission;
 
 import java.util.ArrayList;
@@ -24,9 +25,10 @@ public class Pairs {
                 .anyMatch(v -> pair.isSameLevel(v.getMission()));
     }
 
-    public List<Pair> inquirePairsByMission(Mission mission) {
+    public List<Pair> inquirePairs(Mission mission, Course course) {
         return value.stream()
                 .filter(v -> v.isSameMission(mission))
+                .filter(v -> v.isSameCourse(course))
                 .collect(Collectors.toList());
     }
 }

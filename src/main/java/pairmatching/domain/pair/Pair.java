@@ -1,5 +1,6 @@
 package pairmatching.domain.pair;
 
+import pairmatching.domain.mission.Course;
 import pairmatching.domain.mission.Mission;
 import pairmatching.domain.crew.Crew;
 
@@ -9,12 +10,12 @@ import java.util.Objects;
 public class Pair {
 
     private final Mission mission;
-    private final List<Crew> value;
+    private final List<Crew> crews;
 
     public Pair(Mission mission, List<Crew> value) {
         this.mission = mission;
         validateNumOfCrews(value);
-        this.value = value;
+        this.crews = value;
     }
 
     private void validateNumOfCrews(List<Crew> value) {
@@ -31,12 +32,16 @@ public class Pair {
         return this.mission == mission;
     }
 
+    public boolean isSameCourse(Course course) {
+        return crews.get(0).isSameCourse(course);
+    }
+
     public Mission getMission() {
         return mission;
     }
 
-    public List<Crew> getValue() {
-        return List.copyOf(value);
+    public List<Crew> getCrews() {
+        return List.copyOf(crews);
     }
 
     @Override
@@ -49,8 +54,8 @@ public class Pair {
     }
 
     private boolean equalDeterminant(Pair pair) {
-        for (Crew crew : pair.value) {
-            if (!value.contains(crew)) {
+        for (Crew crew : pair.crews) {
+            if (!crews.contains(crew)) {
                 return false;
             }
         }
@@ -59,6 +64,6 @@ public class Pair {
 
     @Override
     public int hashCode() {
-        return Objects.hash(value);
+        return Objects.hash(crews);
     }
 }

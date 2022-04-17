@@ -1,6 +1,7 @@
 package pairmatching.domain.crew;
 
 import camp.nextstep.edu.missionutils.Randoms;
+import pairmatching.domain.mission.Course;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -15,5 +16,11 @@ public class Crews {
 
     public List<Crew> getValue() {
         return List.copyOf(value);
+    }
+
+    public List<Crew> getCrewsByCourse(Course course) {
+        return value.stream()
+                .filter(crew -> crew.isSameCourse(course))
+                .collect(Collectors.toList());
     }
 }
