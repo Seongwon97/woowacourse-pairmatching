@@ -9,10 +9,8 @@ public class Crews {
 
     private List<Crew> value;
 
-    public Crews(List<String> value) {
-        this.value = value.stream()
-                .map(Crew::new)
-                .collect(Collectors.toList());
+    public Crews(List<Crew> value) {
+        this.value = value;
     }
 
     public List<Crew> getValue() {

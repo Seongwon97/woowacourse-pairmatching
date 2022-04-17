@@ -10,6 +10,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
+import static pairmatching.CrewInfo.*;
 
 class PairServiceTest {
 
@@ -19,7 +20,7 @@ class PairServiceTest {
     @DisplayName("크루가 짝수일 경우 모든 페어를 2명씩 매칭한다.")
     void createPairWithEvenPair() {
         PairService service = new PairService();
-        List<Crew> crews = List.of(new Crew("Rex"), new Crew("Buzz"), new Crew("Woody"), new Crew("Pocky"));
+        List<Crew> crews = List.of(Rex, Buzz, Woody, Pocky);
 
         service.createNewPairs(mission, crews);
         List<Pair> savedPairs = service.inquirePairsByMission(mission);
@@ -32,8 +33,7 @@ class PairServiceTest {
     @DisplayName("크루가 홀수일 경우 마지막 페어는 3명이 한 팀이 된다.")
     void createPairWithOddPair() {
         PairService service = new PairService();
-        List<Crew> crews = List.of(new Crew("Rex"), new Crew("Buzz"),
-                new Crew("Woody"), new Crew("Pocky"), new Crew("Ham"));
+        List<Crew> crews = List.of(Rex, Buzz, Woody, Pocky, Ham);
 
         service.createNewPairs(mission, crews);
         List<Pair> savedPairs = service.inquirePairsByMission(mission);
@@ -46,8 +46,7 @@ class PairServiceTest {
     @DisplayName("과거 중복된 페어 매칭이 존재할 경우 예외가 발생한다.")
     void throwExceptionWithDuplicateMatching() {
         PairService service = new PairService();
-        List<Crew> crews = List.of(new Crew("Rex"), new Crew("Buzz"),
-                new Crew("Woody"), new Crew("Pocky"), new Crew("Ham"));
+        List<Crew> crews = List.of(Rex, Buzz, Woody, Pocky, Ham);
 
         service.createNewPairs(mission, crews);
 

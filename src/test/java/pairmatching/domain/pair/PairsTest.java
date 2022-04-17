@@ -2,18 +2,20 @@ package pairmatching.domain.pair;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pairmatching.domain.mission.Course;
 import pairmatching.domain.mission.Mission;
 import pairmatching.domain.crew.Crew;
 
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static pairmatching.CrewInfo.*;
 
 class PairsTest {
 
     private Mission mission = Mission.RACING_CAR;
-    private Pair pair1 = new Pair(mission, List.of(new Crew("Rex"), new Crew("Buzz")));
-    private Pair pair2 = new Pair(mission, List.of(new Crew("Woody"), new Crew("Pocky")));
+    private Pair pair1 = new Pair(mission, List.of(Rex, Buzz));
+    private Pair pair2 = new Pair(mission, List.of(Woody, Pocky));
 
     @Test
     @DisplayName("패어 매칭 정보를 갖는 인스턴스를 만든다.")

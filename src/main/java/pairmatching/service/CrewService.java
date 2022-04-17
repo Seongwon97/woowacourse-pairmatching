@@ -11,7 +11,7 @@ public class CrewService {
 
     private final Crews crews;
 
-    public CrewService(List<String> crewNames) {
+    public CrewService(List<Crew> crewNames) {
         this.crews = new Crews(crewNames);
     }
 
