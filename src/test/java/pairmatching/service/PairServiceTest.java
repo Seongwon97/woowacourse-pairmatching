@@ -6,6 +6,7 @@ import pairmatching.domain.mission.Course;
 import pairmatching.domain.mission.Mission;
 import pairmatching.domain.crew.Crew;
 import pairmatching.domain.pair.Pair;
+import pairmatching.service.exception.DuplicatePairException;
 
 import java.util.List;
 
@@ -52,7 +53,7 @@ class PairServiceTest {
         service.createNewPairs(mission, crews);
 
         assertThatThrownBy(() -> service.createNewPairs(mission, crews))
-                .isInstanceOf(IllegalArgumentException.class)
+                .isInstanceOf(DuplicatePairException.class)
                 .hasMessageContaining("[ERROR] 중복된 페어 매칭이 존재합니다.");
     }
 }
