@@ -45,4 +45,22 @@ class PairTest {
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 페어는 2명 또는 3명으로 구성됩니다.");
     }
+
+    @Test
+    @DisplayName("매칭된 크루들이 같으면 같은 객체로 판단한다.")
+    void equalsTest() {
+        Pair pair1 = new Pair(List.of(new Crew("Rex"), new Crew("Buzz")));
+        Pair pair2 = new Pair(List.of(new Crew("Rex"), new Crew("Buzz")));
+
+        assertThat(pair1).isEqualTo(pair2);
+    }
+
+    @Test
+    @DisplayName("매칭된 크루들이 다르면 다른 객체로 판단한다.")
+    void notEqualsTest() {
+        Pair pair1 = new Pair(List.of(new Crew("Rex"), new Crew("Buzz")));
+        Pair pair2 = new Pair(List.of(new Crew("Rex1"), new Crew("Buzz")));
+
+        assertThat(pair1).isNotEqualTo(pair2);
+    }
 }

@@ -1,6 +1,7 @@
 package pairmatching;
 
 import java.util.List;
+import java.util.Objects;
 
 public class Pair {
 
@@ -19,5 +20,28 @@ public class Pair {
 
     public List<Crew> getValue() {
         return value;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Pair pair = (Pair) o;
+
+        return equalDeterminant(pair);
+    }
+
+    private boolean equalDeterminant(Pair pair) {
+        for (Crew crew : pair.value) {
+            if (!value.contains(crew)) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(value);
     }
 }
