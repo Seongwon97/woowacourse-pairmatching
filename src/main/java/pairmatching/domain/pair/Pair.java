@@ -25,7 +25,7 @@ public class Pair {
     }
 
     public boolean isSameLevel(Mission mission) {
-        return this.mission == mission;
+        return this.mission.isSameLevel(mission);
     }
 
     public boolean isSameMission(Mission mission) {
