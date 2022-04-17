@@ -18,21 +18,20 @@ public class PairMatchingController {
     private static final PairService pairService = new PairService();
 
     public void run() {
-        boolean isContinue = true;
-        while (isContinue) {
+        while (true) {
             try {
                 Command command = Command.of(InputView.inputOption());
-                command.execute();
                 if(command == Command.FINISH) {
-                    isContinue = false;
+                    break;
                 }
+                executeCommand(command);
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
         }
     }
 
-    static void matching() {
+    private void executeCommand(Command command) {
         OutputView.printPairMatchCommandGuide();
         String[] input = InputView.inputMatchInfo();
 
@@ -40,13 +39,25 @@ public class PairMatchingController {
         Level level = Level.of(input[1]);
         Mission mission = Mission.of(input[2], level);
 
+        if (command == Command.MATCHING) {
+            matching(course, mission);
+        }
+        if (command == Command.INQUIRE) {
+            inquire(course, mission);
+        }
+        if (command == Command.RESET) {
+            reset(course, mission);
+        }
+    }
+
+    private void matching(Course course, Mission mission) {
         if (checkExistMatch(course, mission)) return;
 
         matchNewPairs(1, course, mission);
         OutputView.printPairMatchResult(pairService.inquirePairs(mission, course));
     }
 
-    private static boolean checkExistMatch(Course course, Mission mission) {
+    private boolean checkExistMatch(Course course, Mission mission) {
         if (!pairService.inquirePairs(mission, course).isEmpty()) {
             RematchResponse response = RematchResponse.of(InputView.inputRematchResponse());
             if (response == RematchResponse.NO) {
@@ -57,7 +68,7 @@ public class PairMatchingController {
         return false;
     }
 
-    private static void matchNewPairs(int repeat, Course course, Mission mission) {
+    private void matchNewPairs(int repeat, Course course, Mission mission) {
         if (repeat > 3) {
             throw new IllegalStateException("[ERROR] 페어 매칭에 실패했습니다.");
         }
@@ -69,20 +80,13 @@ public class PairMatchingController {
         }
     }
 
-    static void inquire() {
-        OutputView.printPairMatchCommandGuide();
-        String[] input = InputView.inputMatchInfo();
-
-        Course course = Course.of(input[0]);
-        Level level = Level.of(input[1]);
-        Mission mission = Mission.of(input[2], level);
-
+    private void inquire(Course course, Mission mission) {
         List<Pair> pairs = pairService.inquirePairs(mission, course);
         if (checkNotExistMatch(pairs)) return;
         OutputView.printPairMatchResult(pairs);
     }
 
-    private static boolean checkNotExistMatch(List<Pair> pairs) {
+    private boolean checkNotExistMatch(List<Pair> pairs) {
         if (pairs.isEmpty()) {
             OutputView.printNotExistMatchMessage();
             return true;
@@ -90,20 +94,10 @@ public class PairMatchingController {
         return false;
     }
 
-    public static void reset() {
-        OutputView.printPairMatchCommandGuide();
-        String[] input = InputView.inputMatchInfo();
-
-        Course course = Course.of(input[0]);
-        Level level = Level.of(input[1]);
-        Mission mission = Mission.of(input[2], level);
-
+    private void reset(Course course, Mission mission) {
         List<Pair> pairs = pairService.inquirePairs(mission, course);
         if (checkNotExistMatch(pairs)) return;
         pairService.deletePairs(mission, course);
         OutputView.printDeleteSuccessMessage();
-    }
-
-    public static void finish() {
     }
 }

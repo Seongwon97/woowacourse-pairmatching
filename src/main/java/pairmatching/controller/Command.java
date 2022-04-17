@@ -5,17 +5,15 @@ import java.util.NoSuchElementException;
 
 public enum Command {
 
-    MATCHING("1", PairMatchingController::matching),
-    INQUIRE("2", PairMatchingController::inquire),
-    RESET("3", PairMatchingController::reset),
-    FINISH("Q", PairMatchingController::finish);
+    MATCHING("1"),
+    INQUIRE("2"),
+    RESET("3"),
+    FINISH("Q");
 
     private final String order;
-    private final Runnable runnable;
 
-    Command(String order, Runnable runnable) {
+    Command(String order) {
         this.order = order;
-        this.runnable = runnable;
     }
 
     public static Command of(String input) {
@@ -23,9 +21,5 @@ public enum Command {
                 .filter(value -> value.order.equals(input))
                 .findFirst()
                 .orElseThrow(NoSuchElementException::new);
-    }
-
-    public void execute() {
-        this.runnable.run();
     }
 }
