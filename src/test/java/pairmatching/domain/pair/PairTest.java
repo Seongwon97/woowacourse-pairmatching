@@ -2,8 +2,8 @@ package pairmatching.domain.pair;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pairmatching.Mission;
 import pairmatching.domain.crew.Crew;
-import pairmatching.domain.pair.Pair;
 
 import java.util.List;
 
@@ -12,10 +12,12 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class PairTest {
 
+    private Mission mission = Mission.RACING_CAR;
+
     @Test
     @DisplayName("2명의 크루 정보를 받아 Pair를 생성한다.")
     void createPairWithTwoCrew() {
-        Pair pair = new Pair(List.of(new Crew("Rex"), new Crew("Buzz")));
+        Pair pair = new Pair(mission, List.of(new Crew("Rex"), new Crew("Buzz")));
 
         assertThat(pair).isNotNull();
     }
@@ -23,7 +25,7 @@ class PairTest {
     @Test
     @DisplayName("3명의 크루 정보를 받아 Pair를 생성한다.")
     void createPairWithThreeCrew() {
-        Pair pair = new Pair(List.of(new Crew("Rex"), new Crew("Buzz"), new Crew("Woody")));
+        Pair pair = new Pair(mission, List.of(new Crew("Rex"), new Crew("Buzz"), new Crew("Woody")));
 
         assertThat(pair).isNotNull();
     }
@@ -33,7 +35,7 @@ class PairTest {
     void throwExceptionWithPairWithOverThreeCrews() {
         List<Crew> crews = List.of(new Crew("Rex"), new Crew("Buzz"), new Crew("Woody"), new Crew("Pocky"));
 
-        assertThatThrownBy(() -> new Pair(crews))
+        assertThatThrownBy(() -> new Pair(mission, crews))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 페어는 2명 또는 3명으로 구성됩니다.");
     }
@@ -43,7 +45,7 @@ class PairTest {
     void throwExceptionWithPairWithUnderTwoCrews() {
         List<Crew> crews = List.of(new Crew("Rex"));
 
-        assertThatThrownBy(() -> new Pair(crews))
+        assertThatThrownBy(() -> new Pair(mission, crews))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("[ERROR] 페어는 2명 또는 3명으로 구성됩니다.");
     }
@@ -51,8 +53,8 @@ class PairTest {
     @Test
     @DisplayName("매칭된 크루들이 같으면 같은 객체로 판단한다.")
     void equalsTest() {
-        Pair pair1 = new Pair(List.of(new Crew("Rex"), new Crew("Buzz")));
-        Pair pair2 = new Pair(List.of(new Crew("Rex"), new Crew("Buzz")));
+        Pair pair1 = new Pair(mission, List.of(new Crew("Rex"), new Crew("Buzz")));
+        Pair pair2 = new Pair(mission, List.of(new Crew("Rex"), new Crew("Buzz")));
 
         assertThat(pair1).isEqualTo(pair2);
     }
@@ -60,8 +62,8 @@ class PairTest {
     @Test
     @DisplayName("매칭된 크루들이 다르면 다른 객체로 판단한다.")
     void notEqualsTest() {
-        Pair pair1 = new Pair(List.of(new Crew("Rex"), new Crew("Buzz")));
-        Pair pair2 = new Pair(List.of(new Crew("Rex1"), new Crew("Buzz")));
+        Pair pair1 = new Pair(mission, List.of(new Crew("Rex"), new Crew("Buzz")));
+        Pair pair2 = new Pair(mission, List.of(new Crew("Rex1"), new Crew("Buzz")));
 
         assertThat(pair1).isNotEqualTo(pair2);
     }

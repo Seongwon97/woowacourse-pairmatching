@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import pairmatching.Mission;
 import pairmatching.domain.crew.Crew;
-import pairmatching.domain.pair.Pairs;
 
 import java.util.List;
 
@@ -12,36 +11,36 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 class PairsTest {
 
-    @Test
-    @DisplayName("크루들의 정보 및 미션 정보를 받아 페어 매칭을 만든다.")
-    void createPairsEachLevel() {
-        Pairs pairs = new Pairs(Mission.RACING_CAR,
-                List.of(new Crew("Rex"), new Crew("Buzz"), new Crew("Woody"), new Crew("Pocky")));
+    private Mission mission = Mission.RACING_CAR;
+    private Pair pair1 = new Pair(mission, List.of(new Crew("Rex"), new Crew("Buzz")));
+    private Pair pair2 = new Pair(mission, List.of(new Crew("Woody"), new Crew("Pocky")));
 
+    @Test
+    @DisplayName("패어 매칭 정보를 갖는 인스턴스를 만든다.")
+    void createPairs() {
+        Pairs pairs = new Pairs();
         assertThat(pairs).isNotNull();
     }
 
     @Test
-    @DisplayName("크루가 짝수일 경우 모든 페어를 2명씩 매칭한다.")
-    void createPairWithEvenPair() {
-        Pairs pairs = new Pairs(Mission.RACING_CAR,
-                List.of(new Crew("Rex"), new Crew("Buzz"), new Crew("Woody"), new Crew("Pocky")));
+    @DisplayName("같은 레벨에서 페어 매칭을 한 경험이 있으면 true를 반환한다.")
+    void hasMatchingExperience() {
+        List<Pair> newPairs = List.of(pair1, pair2);
 
-        assertThat(pairs.getPairs()
-                .get(pairs.getPairs().size() -1)
-                .getValue().size())
-                .isEqualTo(2);
+        Pairs pairs = new Pairs();
+        pairs.addNewPairs(newPairs);
+
+        assertThat(pairs.hasMatchingExperience(pair1)).isTrue();
     }
 
     @Test
-    @DisplayName("크루가 홀수일 경우 마지막 페어는 3명이 한 팀이 된다.")
-    void createPairWithOddPair() {
-        Pairs pairs = new Pairs(Mission.RACING_CAR,
-                List.of(new Crew("Rex"), new Crew("Buzz"), new Crew("Woody"), new Crew("Pocky"), new Crew("Ham")));
+    @DisplayName("같은 레벨에서 페어 매칭을 한 경험이 없으면 false를 반환한다.")
+    void hasNotMatchingExperience() {
+        List<Pair> newPairs = List.of(pair2);
 
-        assertThat(pairs.getPairs()
-                .get(pairs.getPairs().size() -1)
-                .getValue().size())
-                .isEqualTo(3);
+        Pairs pairs = new Pairs();
+        pairs.addNewPairs(newPairs);
+
+        assertThat(pairs.hasMatchingExperience(pair1)).isFalse();
     }
 }

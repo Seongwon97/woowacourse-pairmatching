@@ -1,15 +1,19 @@
 package pairmatching.domain.pair;
 
+import pairmatching.Mission;
 import pairmatching.domain.crew.Crew;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 
 public class Pair {
 
+    private final Mission mission;
     private final List<Crew> value;
 
-    public Pair(List<Crew> value) {
+    public Pair(Mission mission, List<Crew> value) {
+        this.mission = mission;
         validateNumOfCrews(value);
         this.value = value;
     }
@@ -20,8 +24,20 @@ public class Pair {
         }
     }
 
+    public boolean isSameLevel(Mission mission) {
+        return this.mission == mission;
+    }
+
+    public boolean isSameMission(Mission mission) {
+        return this.mission == mission;
+    }
+
+    public Mission getMission() {
+        return mission;
+    }
+
     public List<Crew> getValue() {
-        return value;
+        return List.copyOf(value);
     }
 
     @Override
