@@ -3,11 +3,14 @@ package pairmatching.controller;
 import pairmatching.domain.mission.Course;
 import pairmatching.domain.mission.Level;
 import pairmatching.domain.mission.Mission;
+import pairmatching.domain.pair.Pair;
 import pairmatching.service.CrewService;
 import pairmatching.service.PairService;
 import pairmatching.service.exception.DuplicatePairException;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
+
+import java.util.List;
 
 public class PairMatchingController {
 
@@ -71,6 +74,16 @@ public class PairMatchingController {
         Level level = Level.of(input[1]);
         Mission mission = Mission.of(input[2], level);
 
-        OutputView.printPairMatchResult(pairService.inquirePairs(mission, course));
+        List<Pair> pairs = pairService.inquirePairs(mission, course);
+        if (checkNotExistMatch(pairs)) return;
+        OutputView.printPairMatchResult(pairs);
+    }
+
+    private static boolean checkNotExistMatch(List<Pair> pairs) {
+        if (pairs.isEmpty()) {
+            OutputView.printNotExistMatchMessage();
+            return true;
+        }
+        return false;
     }
 }

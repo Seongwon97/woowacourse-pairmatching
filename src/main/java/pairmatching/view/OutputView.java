@@ -9,7 +9,7 @@ import java.util.stream.Collectors;
 public class OutputView {
 
     public static void printPairMatchCommandGuide() {
-        System.out.println("#############################################" + System.lineSeparator() +
+        System.out.println(System.lineSeparator() + "#############################################" + System.lineSeparator() +
                 "과정: 백엔드 | 프론트엔드" + System.lineSeparator() +
                 "미션:" + System.lineSeparator() +
                 "  - 레벨1: 자동차경주 | 로또 | 숫자야구게임" + System.lineSeparator() +
@@ -30,10 +30,13 @@ public class OutputView {
                     .collect(Collectors.toList());
             System.out.println(String.join(" : ", pairNames));
         }
-        System.out.println();
     }
 
     public static void printRematchMessage() {
         System.out.println("중복된 페어 매칭이 있어 재매치를 합니다.");
+    }
+
+    public static void printNotExistMatchMessage() {
+        System.out.println("[ERROR] 매칭 이력이 없습니다.");
     }
 }

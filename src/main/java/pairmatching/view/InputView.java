@@ -7,7 +7,7 @@ public class InputView {
     private static final Scanner scanner = new Scanner(System.in);
 
     public static String inputOption() {
-        System.out.println("기능을 선택하세요." + System.lineSeparator() +
+        System.out.println(System.lineSeparator() + "기능을 선택하세요." + System.lineSeparator() +
                 "1. 페어 매칭" + System.lineSeparator() +
                 "2. 페어 조회" + System.lineSeparator() +
                 "3. 페어 초기화" + System.lineSeparator() +
