@@ -17,4 +17,8 @@ public class Crews {
                 .collect(Collectors.toList());
 
     }
+
+    public Collection<Crew> shuffleCrew() {
+        return Collections.unmodifiableList(Randoms.shuffle(value));
+    }
 }

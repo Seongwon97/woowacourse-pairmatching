@@ -16,4 +16,12 @@ public class CrewsTest {
 
         assertThat(crews).isNotNull();
     }
+
+    @Test
+    @DisplayName("크루들의 정보를 섞은 값을 반환한다.")
+    void getShuffledCrewInfo() {
+        Crews crews = new Crews(List.of("Rex", "Skull", "Coffee"));
+
+        assertThat(crews.shuffleCrew().size()).isEqualTo(3);
+    }
 }
