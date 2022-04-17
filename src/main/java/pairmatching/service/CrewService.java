@@ -4,7 +4,6 @@ import camp.nextstep.edu.missionutils.Randoms;
 import pairmatching.domain.crew.Crew;
 import pairmatching.domain.crew.Crews;
 import pairmatching.domain.mission.Course;
-import pairmatching.domain.pair.Pairs;
 
 import java.util.List;
 

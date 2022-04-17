@@ -2,9 +2,9 @@ package pairmatching.service;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pairmatching.domain.crew.Crew;
 import pairmatching.domain.mission.Course;
 import pairmatching.domain.mission.Mission;
-import pairmatching.domain.crew.Crew;
 import pairmatching.domain.pair.Pair;
 import pairmatching.service.exception.DuplicatePairException;
 

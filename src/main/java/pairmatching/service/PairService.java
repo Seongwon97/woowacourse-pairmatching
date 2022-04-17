@@ -1,8 +1,8 @@
 package pairmatching.service;
 
+import pairmatching.domain.crew.Crew;
 import pairmatching.domain.mission.Course;
 import pairmatching.domain.mission.Mission;
-import pairmatching.domain.crew.Crew;
 import pairmatching.domain.pair.Pair;
 import pairmatching.domain.pair.Pairs;
 import pairmatching.service.exception.DuplicatePairException;

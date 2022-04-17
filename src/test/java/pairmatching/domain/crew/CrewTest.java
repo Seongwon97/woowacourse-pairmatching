@@ -2,7 +2,6 @@ package pairmatching.domain.crew;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
-import pairmatching.domain.crew.Crew;
 import pairmatching.domain.mission.Course;
 
 import static org.assertj.core.api.Assertions.assertThat;
