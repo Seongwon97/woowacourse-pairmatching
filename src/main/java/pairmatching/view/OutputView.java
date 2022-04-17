@@ -33,10 +33,14 @@ public class OutputView {
     }
 
     public static void printRematchMessage() {
-        System.out.println("중복된 페어 매칭이 있어 재매치를 합니다.");
+        System.out.println(System.lineSeparator() + "중복된 페어 매칭이 있어 재매치를 합니다.");
     }
 
     public static void printNotExistMatchMessage() {
-        System.out.println("[ERROR] 매칭 이력이 없습니다.");
+        System.out.println(System.lineSeparator() + "[ERROR] 매칭 이력이 없습니다.");
+    }
+
+    public static void printDeleteSuccessMessage() {
+        System.out.println(System.lineSeparator() + "초기화 되었습니다.");
     }
 }

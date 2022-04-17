@@ -23,6 +23,9 @@ public class PairMatchingController {
             try {
                 Command command = Command.of(InputView.inputOption());
                 command.execute();
+                if(command == Command.FINISH) {
+                    isContinue = false;
+                }
             } catch (Exception e) {
                 System.out.println(e.getMessage());
             }
@@ -85,5 +88,22 @@ public class PairMatchingController {
             return true;
         }
         return false;
+    }
+
+    public static void reset() {
+        OutputView.printPairMatchCommandGuide();
+        String[] input = InputView.inputMatchInfo();
+
+        Course course = Course.of(input[0]);
+        Level level = Level.of(input[1]);
+        Mission mission = Mission.of(input[2], level);
+
+        List<Pair> pairs = pairService.inquirePairs(mission, course);
+        if (checkNotExistMatch(pairs)) return;
+        pairService.deletePairs(mission, course);
+        OutputView.printDeleteSuccessMessage();
+    }
+
+    public static void finish() {
     }
 }

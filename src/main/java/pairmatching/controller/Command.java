@@ -6,7 +6,9 @@ import java.util.NoSuchElementException;
 public enum Command {
 
     MATCHING("1", PairMatchingController::matching),
-    INQUIRE("2", PairMatchingController::inquire);
+    INQUIRE("2", PairMatchingController::inquire),
+    RESET("3", PairMatchingController::reset),
+    FINISH("Q", PairMatchingController::finish);
 
     private final String order;
     private final Runnable runnable;
