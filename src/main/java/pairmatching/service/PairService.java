@@ -5,6 +5,7 @@ import pairmatching.domain.mission.Mission;
 import pairmatching.domain.crew.Crew;
 import pairmatching.domain.pair.Pair;
 import pairmatching.domain.pair.Pairs;
+import pairmatching.service.exception.DuplicatePairException;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +22,7 @@ public class PairService {
         List<Pair> newPairs = matchNewPairs(mission, crews);
         for (Pair pair : newPairs) {
             if (pairs.hasMatchingExperience(pair)) {
-                throw new IllegalArgumentException("[ERROR] 중복된 페어 매칭이 존재합니다.");
+                throw new DuplicatePairException();
             }
         }
         pairs.addNewPairs(newPairs);

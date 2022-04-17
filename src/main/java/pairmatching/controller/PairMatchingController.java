@@ -5,6 +5,7 @@ import pairmatching.domain.mission.Level;
 import pairmatching.domain.mission.Mission;
 import pairmatching.service.CrewService;
 import pairmatching.service.PairService;
+import pairmatching.service.exception.DuplicatePairException;
 import pairmatching.view.InputView;
 import pairmatching.view.OutputView;
 
@@ -35,8 +36,20 @@ public class PairMatchingController {
         Level level = Level.of(input[1]);
         Mission mission = Mission.of(input[2], level);
 
-        pairService.createNewPairs(mission, crewService.getShuffledCrew(course));
+        matchNewPairs(1, course, mission);
         OutputView.printPairMatchResult(pairService.inquirePairs(mission, course));
+    }
+
+    private static void matchNewPairs(int repeat, Course course, Mission mission) {
+        if (repeat > 3) {
+            throw new IllegalStateException("[ERROR] 페어 매칭에 실패했습니다.");
+        }
+        try {
+            pairService.createNewPairs(mission, crewService.getShuffledCrew(course));
+        } catch (DuplicatePairException e) {
+            OutputView.printRematchMessage();
+            matchNewPairs(repeat + 1, course, mission);
+        }
     }
 
     static void inquire() {

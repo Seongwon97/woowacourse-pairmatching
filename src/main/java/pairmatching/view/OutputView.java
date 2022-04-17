@@ -32,4 +32,8 @@ public class OutputView {
         }
         System.out.println();
     }
+
+    public static void printRematchMessage() {
+        System.out.println("중복된 페어 매칭이 있어 재매치를 합니다.");
+    }
 }
