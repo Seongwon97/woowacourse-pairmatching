@@ -1,4 +1,7 @@
-package pairmatching;
+package pairmatching.domain.pair;
+
+import pairmatching.Mission;
+import pairmatching.domain.crew.Crew;
 
 import java.util.ArrayList;
 import java.util.List;

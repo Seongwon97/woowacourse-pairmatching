@@ -1,7 +1,8 @@
-package pairmatching;
+package pairmatching.domain.crew;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import pairmatching.domain.crew.Crews;
 
 import java.util.List;
 

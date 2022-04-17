@@ -1,4 +1,4 @@
-package pairmatching;
+package pairmatching.domain.crew;
 
 import camp.nextstep.edu.missionutils.Randoms;
 
