@@ -7,7 +7,7 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class CrewsTest {
+class CrewsTest {
 
     @Test
     @DisplayName("크루들의 이름을 받아 올바른 인스턴스를 생성한다.")
