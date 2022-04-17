@@ -43,4 +43,8 @@ public class PairService {
     public List<Pair> inquirePairs(Mission mission, Course course) {
         return pairs.inquirePairs(mission, course);
     }
+
+    public void deletePairs(Mission mission, Course course) {
+        pairs.deletePairs(mission, course);
+    }
 }

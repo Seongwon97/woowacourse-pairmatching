@@ -31,4 +31,8 @@ public class Pairs {
                 .filter(v -> v.isSameCourse(course))
                 .collect(Collectors.toList());
     }
+
+    public void deletePairs(Mission mission, Course course) {
+        value.removeIf(pair -> pair.isSameCourse(course) && pair.isSameMission(mission));
+    }
 }
