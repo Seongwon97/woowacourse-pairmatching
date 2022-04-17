@@ -1,8 +1,7 @@
 package pairmatching.service;
 
-import pairmatching.Mission;
+import pairmatching.domain.mission.Mission;
 import pairmatching.domain.crew.Crew;
-import pairmatching.domain.crew.Crews;
 import pairmatching.domain.pair.Pair;
 import pairmatching.domain.pair.Pairs;
 

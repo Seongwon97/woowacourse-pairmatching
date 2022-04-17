@@ -1,9 +1,8 @@
 package pairmatching.domain.pair;
 
-import pairmatching.Mission;
+import pairmatching.domain.mission.Mission;
 import pairmatching.domain.crew.Crew;
 
-import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
 

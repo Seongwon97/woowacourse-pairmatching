@@ -1,6 +1,6 @@
 package pairmatching.domain.pair;
 
-import pairmatching.Mission;
+import pairmatching.domain.mission.Mission;
 
 import java.util.ArrayList;
 import java.util.List;

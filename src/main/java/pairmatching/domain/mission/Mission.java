@@ -1,6 +1,4 @@
-package pairmatching;
-
-import pairmatching.domain.Level;
+package pairmatching.domain.mission;
 
 public enum Mission {
 
