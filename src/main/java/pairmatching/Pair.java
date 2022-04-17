@@ -16,4 +16,8 @@ public class Pair {
             throw new IllegalArgumentException("[ERROR] 페어는 2명 또는 3명으로 구성됩니다.");
         }
     }
+
+    public List<Crew> getValue() {
+        return value;
+    }
 }
